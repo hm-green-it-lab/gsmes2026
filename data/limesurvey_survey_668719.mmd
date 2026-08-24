@@ -1,0 +1,73 @@
+flowchart TD
+  classDef mandatory fill:#ffe0e0,stroke:#cc0000,stroke-width:2px,color:#000
+  subgraph g_4950["Context"]
+  q_74218["contextrole *<br/>Which of<br/>the following<br/>describes your<br/>role in…"]
+  q_74220["contextdomain<br/>Which domains<br/>best describe<br/>the software<br/>systems you…"]
+  q_74222["contextsize *<br/>How large<br/>is your<br/>organization?"]
+  q_74228["contextresponsabilit *<br/>Who holds<br/>formal decision<br/>authority for<br/>sustainability-related…"]
+  q_74223["contextworkload<br/>Which workload<br/>types characterize<br/>the majority<br/>of the…"]
+  q_74229["contextdecission<br/>Which roles<br/>are involved<br/>in activities<br/>related to…"]
+  q_74227["contextsustainabilit *<br/>How would<br/>you rate<br/>the sustainability<br/>maturity of…"]
+  q_74224["contextruntime<br/>Which runtime<br/>environments are<br/>used by<br/>the majority…"]
+  q_74226["contextarchitecture<br/>Which architectural<br/>style best<br/>describes the<br/>majority of…"]
+  q_74225["contextlocation<br/>Where do<br/>the majority<br/>of the<br/>software systems…"]
+  end
+  subgraph g_4951["Want"]
+  q_74230["wantobjectives<br/>How important<br/>are the<br/>following objectives<br/>for your…"]
+  q_74233["wantinfluence *<br/>Does energy<br/>consumption currently<br/>influence<br/>decision-making in…"]
+  q_74234["wanteffort *<br/>How strongly<br/>do you<br/>agree or<br/>disagree with…"]
+  end
+  subgraph g_4952["Can"]
+  q_74235["canbarrier<br/>Which factors<br/>hinder the<br/>measurement of<br/>energy consumption…"]
+  q_74236["canvalueable *<br/>Which improvements<br/>would help<br/>enable or<br/>enhance energy…"]
+  q_74239["canpolitical *<br/>Do you<br/>think additional<br/>regulation or<br/>policy incentives…"]
+  end
+  subgraph g_4953["Do"]
+  q_74244["dodecission *<br/>How often<br/>are decisions<br/>regarding the<br/>software systems…"]
+  q_74245["dorequirements *<br/>Are green<br/>or energy-related<br/>requirements formally<br/>part of…"]
+  q_74241["dometrics<br/>Which metrics<br/>are currently<br/>tracked for<br/>the software…"]
+  q_74814["doesgscope *<br/>Are CO₂e<br/>emissions<br/>differentiated by<br/>emission scope…"]
+  q_74243["dolifecycle<br/>In which<br/>phases of<br/>the software<br/>life cycle…"]
+  q_74246["doscope<br/>What are<br/>the scopes<br/>of observation<br/>when measuring…"]
+  q_74247["doautomation *<br/>Is the<br/>assessment of<br/>energy or<br/>resource consumption…"]
+  q_74248["docontext *<br/>In which<br/>runtime environments<br/>are measurements<br/>taken?"]
+  end
+  subgraph g_4954["Outlook"]
+  q_74251["outlooklikely *<br/>How likely<br/>is your<br/>organization to<br/>take the…"]
+  q_74255["outlookimpact *<br/>Which decision<br/>areas in<br/>your organization<br/>would be…"]
+  end
+  q_74218 --> q_74220
+  q_74220 --> q_74222
+  q_74222 --> q_74228
+  q_74228 --> q_74223
+  q_74223 --> q_74229
+  q_74229 --> q_74227
+  q_74227 --> q_74224
+  q_74224 --> q_74226
+  q_74226 --> q_74225
+  q_74225 --> q_74230
+  q_74230 --> q_74233
+  q_74233 --> q_74234
+  q_74234 --> q_74235
+  q_74235 --> q_74236
+  q_74236 --> q_74239
+  q_74239 --> q_74244
+  q_74244 --> q_74245
+  q_74245 --> q_74241
+  q_74241 --> q_74814
+  q_74814 --> q_74243
+  q_74243 --> q_74246
+  q_74246 --> q_74247
+  q_74247 --> q_74248
+  q_74248 --> q_74251
+  q_74251 --> q_74255
+  q_74218 -->|"if (SQ002 == 'Y')"| q_74223
+  q_74218 -->|"if (SQ002 == 'Y')"| q_74224
+  q_74218 -->|"if (SQ002 == 'Y')"| q_74226
+  q_74218 -->|"if (SQ002 == 'Y')"| q_74246
+  q_74218 -->|"if (SQ002 == 'Y')"| q_74247
+  q_74218 -->|"if (SQ002 == 'Y')"| q_74248
+  q_74218 -->|"if (contextrole == 'SQ002')"| q_74225
+  q_74218 -->|"if (contextrole == 'SQ002')"| q_74243
+  q_74241 -->|"if (dometrics == 'SQ003')"| q_74814
+  class q_74218,q_74222,q_74227,q_74228,q_74233,q_74234,q_74236,q_74239,q_74244,q_74245,q_74247,q_74248,q_74251,q_74255,q_74814 mandatory

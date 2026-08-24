@@ -1,0 +1,17 @@
+# Pinned upper bounds, not exact versions: the analysis is deterministic under
+# any version in these ranges, and a hard pin would rot faster than the package.
+#
+# The pandas bound is load-bearing. plspm 0.5.7 indexes with a trailing-comma
+# tuple (`path.loc[dv,]`), which pandas 3 removed; on pandas 3 every pls_*.py
+# and experiments/extra_macros.py fail with "zip() argument 2 is longer than
+# argument 1".  gen_latex.py no longer touches plspm, so the paper itself
+# regenerates without it.
+pandas>=1.5,<3.0
+numpy>=1.23
+scipy>=1.9
+
+# One part of the pipeline each:
+statsmodels>=0.13     # proportional-odds ordinal regressions (hypothesis_test.py)
+# plspm is needed for the robustness report, not for the paper:
+plspm==0.5.7          # PLS-SEM fits and bootstrap intervals (pls_*.py)
+matplotlib>=3.6       # reports/descriptive_plots.png (descriptive_analysis.py)

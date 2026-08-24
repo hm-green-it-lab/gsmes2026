@@ -1,0 +1,176 @@
+GREEN SOFTWARE METRICS SURVEY – ROBUSTNESS & NON-RESPONSE REPORT
+n = 88  |  7 checks  |  companion to the paper's results and limitations  |  2026-08-23
+════════════════════════════════════════════════════════════════════════════════════════════
+
+
+  BOTTOM LINE
+────────────────────────────────────────────────────────────────────────────────────────────
+  ROBUST       Can(Val) → Do. Holds in all 8 scorings, under both estimators,
+               and under every alternative specification.
+  CONDITIONAL  H4 and H8. Hold only where Do includes governance embedding;
+               Want(env) is unrelated to coverage alone (rho = +0.073).
+  WITHDRAWN    Context(maturity) → Do. Survives only where Do keeps the
+               governance component maturity overlaps with by definition.
+  UNRESOLVED   Whether Can(Val) outpredicts Want(env). Would need n ≈ 300.
+  CAVEAT       Completers over-represent broad-footprint organizations, so
+               absolute practice levels may be modestly overstated. Figures:
+               experiments/dropout_analysis.py.
+
+  GLOSSARY
+────────────────────────────────────────────────────────────────────────────────────────────
+  Context     organization size, application-domain footprint, sustainability maturity
+  Want(env)   importance of CO2e and energy reduction as objectives (1-5)
+  Can(Val)    'optimization is worth the required effort' (1-5)
+  Can(Con)    severity of measurement barriers (0-2)
+  Do          coverage (metric tiers 0-3) + governance (embedding 0-3) = composite 0-6
+  Outlook     likelihood of adopting structured measurement guidelines (1-5)
+
+  H4 Want(env) → Do      H5 Can(Val) → Do      H6 Want(env) → Outlook      H8 Do → Outlook
+
+  rho  Spearman correlation, -1 to +1      OR   odds ratio, 1.00 = no effect
+  beta standardized PLS path, -1 to +1     *    significant: p < .05, or CI excludes 0 / 1.00
+
+────────────────────────────────────────────────────────────────────────────────────────────
+  CHECK 1  ARE Can(Val) AND Want THE SAME CONSTRUCT?
+────────────────────────────────────────────────────────────────────────────────────────────
+  VERDICT   DISTINCT, BUT NOT RANKABLE
+
+  Can(Val) x Want(env)                 rho = +0.069   p = .538   n = 82
+
+  Can(Val)  → Do (composite)           rho = +0.417
+  Want(env) → Do (composite)           rho = +0.224
+  difference, Do                       +0.205   95% CI [-0.08, +0.48]   p = .161
+  difference, Outlook                  +0.215   95% CI [-0.08, +0.50]   p = .144
+
+  power to detect that gap at n = 88   29%        n for 80% power   ~300
+
+  Uncorrelated, so not interchangeable. The difference intervals include zero,
+  but at 29% power that is an underpowered comparison rather than equivalence.
+
+────────────────────────────────────────────────────────────────────────────────────────────
+  CHECK 2  DOES THE RESULT DEPEND ON THE PLS-SEM ESTIMATOR?
+────────────────────────────────────────────────────────────────────────────────────────────
+  VERDICT   NO – ORDINAL LOGIT REPRODUCES THE PATTERN
+
+  Outcome                   Predictor                     OR  95% CI                p
+  ───────────────────────────────────────────────────────────────────────────────────
+  Do (practice composite)   Want(env) – motivation      1.65  [1.00, 2.73]       .051
+                            Can(Val) – valuation        2.37  [1.45, 3.88]      <.001 *
+                            Context – maturity          2.03  [1.23, 3.37]       .006 *
+  Do (metric coverage)      Want(env) – motivation      1.44  [0.88, 2.36]       .150
+                            Can(Val) – valuation        2.04  [1.27, 3.28]       .003 *
+                            Context – maturity          1.46  [0.88, 2.43]       .141
+  Do (governance embedding) Want(env) – motivation      1.36  [0.81, 2.29]       .252
+                            Can(Val) – valuation        2.05  [1.20, 3.50]       .009 *
+                            Context – maturity          2.67  [1.54, 4.62]      <.001 *
+  Outlook (adoption intent) Want(env) – motivation      1.48  [0.93, 2.36]       .102
+                            Can(Val) – valuation        2.18  [1.29, 3.69]       .004 *
+                            Do – enacted practice       1.58  [0.94, 2.67]       .085
+  Outlook (decision-area awareness)Want(env) – motivation      0.69  [0.44, 1.08]       .101
+                            Can(Val) – valuation        1.52  [0.96, 2.41]       .077
+                            Do – enacted practice       1.92  [1.17, 3.12]       .009 *
+  Do (practice composite), Context removedWant(env) – motivation      2.14  [1.34, 3.41]       .001 *
+                            Can(Val) – valuation        2.46  [1.52, 3.95]      <.001 *
+  Do (metric coverage), Context removedWant(env) – motivation      1.65  [1.04, 2.61]       .032 *
+                            Can(Val) – valuation        2.07  [1.29, 3.30]       .002 *
+  ───────────────────────────────────────────────────────────────────────────────────
+  Standardized predictors, 68 listwise-complete cases (as the PLS model).
+
+  H6 on those 68 shared cases       Want(env) → Outlook   OR = 1.48   p = .102
+  H6 on all cases (n = 82)          Want(env) → Outlook   OR = 1.66   p = .019 *
+
+  Can(Val) is the only predictor significant for all three outcomes. H6 is decided
+  by the specification, not the estimator: motivation reaches intent until maturity
+  and practice enter the model. Context predicts the composite but not coverage —
+  see check 3.
+
+────────────────────────────────────────────────────────────────────────────────────────────
+  CHECK 3  DOES Context OVERLAP WITH Do BY DEFINITION?
+────────────────────────────────────────────────────────────────────────────────────────────
+  VERDICT   YES – maturity → practice WITHDRAWN; Can PATHS ROBUST
+
+  Specification           Path                 beta  95% CI
+  ─────────────────────────────────────────────────────────────────────
+  Reported model          Context → Do        +0.41  [+0.18, +0.61]    *
+  Do = coverage only      Context → Do        +0.21  [-0.04, +0.45]
+  Do = governance only    Context → Do        +0.43  [+0.19, +0.63]    *
+
+  Reported model          Want → Do           +0.16  [-0.06, +0.36]
+  Context removed         Want → Do           +0.35  [+0.17, +0.53]    *
+
+  Reported model          Can → Do            +0.36  [+0.17, +0.56]    *
+  Do = coverage only      Can → Do            +0.33  [+0.12, +0.52]    *
+  Context removed         Can → Do            +0.40  [+0.20, +0.59]    *
+
+  Do = coverage only      Can → Outlook       +0.42  [+0.17, +0.61]    *
+  Context removed         Can → Outlook       +0.37  [+0.17, +0.57]    *
+  ─────────────────────────────────────────────────────────────────────
+  1000 bootstrap resamples per specification.
+
+  Context x Do(coverage)     r = 0.18   p = .119
+  Context x Do(governance)   r = 0.34   p = .003
+
+  Context → Do holds only with governance retained. Want → Do is suppressed by the
+  same overlap: removing Context more than doubles it. The Can paths are unaffected,
+  so the valuation conclusions do not rest on the disputed construct.
+
+────────────────────────────────────────────────────────────────────────────────────────────
+  CHECK 4  DOES THE RESULT DEPEND ON HOW Do WAS SCORED?
+────────────────────────────────────────────────────────────────────────────────────────────
+  VERDICT   H5 ROBUST  |  H8 CONDITIONAL  |  H4 CONDITIONAL
+
+                                               H5 Can(Val)→Do H4 Want(env)→Do  H8 Do→Outlook
+  Scoring of Do                                      rho             rho             rho
+  ────────────────────────────────────────────────────────────────────────────────────────────
+  cumulative tiers + governance  (reported)       +0.417     *    +0.224     *    +0.401     *
+  highest tier reached + governance               +0.394     *    +0.337     *    +0.498     *
+  raw metric count + governance                   +0.293     *    +0.032          +0.172
+  tier-weighted metrics + governance              +0.299     *    +0.171          +0.269     *
+  coverage weighted 2:1 over governance           +0.400     *    +0.173          +0.316     *
+  governance weighted 2:1 over coverage           +0.402     *    +0.244     *    +0.438     *
+  metric coverage only  (governance dropped)      +0.295     *    +0.073          +0.161
+  governance only  (coverage dropped)             +0.367     *    +0.293     *    +0.466     *
+  ────────────────────────────────────────────────────────────────────────────────────────────
+  HOLDS IN                                              8 of 8          4 of 8          6 of 8
+
+  H5 survives even where governance is discarded entirely. H8 fails exactly
+  where Do is reduced to coverage or a raw count. H4 is weakest and holds only where
+  governance carries weight — motivation reaches the formalization of measurement,
+  not its extent. The tier rule is not a technicality: it moves the score for
+  15 respondents (17%) who report CO2e or SCI without the underlying energy figure.
+
+────────────────────────────────────────────────────────────────────────────────────────────
+  CHECK 5  COULD COMMON METHOD BIAS EXPLAIN THE ASSOCIATIONS?
+────────────────────────────────────────────────────────────────────────────────────────────
+  VERDICT   NO SIGNAL – from a deliberately weak test
+
+  Harman first unrotated factor    32.9% of variance
+  conventional threshold           50%
+
+  Necessary but not sufficient. Marker-variable or CFA approaches would be stronger
+  but need a larger sample.
+
+────────────────────────────────────────────────────────────────────────────────────────────
+  CHECK 6  WOULD NON-RESPONDERS HAVE ANSWERED DIFFERENTLY?
+────────────────────────────────────────────────────────────────────────────────────────────
+  VERDICT   NO SIGNAL
+
+  early responders  n = 44          late responders  n = 44
+
+  Want(env), Can(Val), Do, Outlook    no difference    smallest p = .249
+  Outlook(awareness)                  no difference    p = .271, r = -0.14
+
+  Armstrong-Overton median split on submission date, late responders proxying
+  non-responders. Evidence of absence only to the extent that proxy holds.
+
+────────────────────────────────────────────────────────────────────────────────────────────
+  CHECK 7  DOES EXCLUDING 'I DO NOT KNOW' MATURITY ANSWERS MATTER?
+────────────────────────────────────────────────────────────────────────────────────────────
+  VERDICT   NO – BOTH CONTRASTS HOLD EITHER WAY
+
+  Context → Want(env)    'do not know' grouped with Low    p = .008 *
+  Context → Do           'do not know' grouped with Low    p = .004 *
+
+════════════════════════════════════════════════════════════════════════════════════════════
+  Regenerated by experiments/gen_robustness_report.py from the same macros
+  the paper is compiled from, so no value here can disagree with the PDF.

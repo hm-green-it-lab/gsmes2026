@@ -1,0 +1,419 @@
+GREEN SOFTWARE METRICS SURVEY – HYPOTHESIS TEST REPORT
+File: replication/data/results-survey668719.csv  |  n=88
+=================================================================
+
+=================================================================
+  GREEN SOFTWARE METRICS SURVEY – HYPOTHESIS TESTS (H1 – H8)
+  n=88  |  Significance threshold: p<0.05
+  Primary pairs defined in config.py; secondary/sensitivity analyses uncorrected.
+=================================================================
+
+  DIMENSION SCORING
+  ──────────────────────────────────────────────────────────────────────
+  CONTEXT  (grouping variable – not scored)
+    size_250         SME (1–249)        vs Enterprise (250+)   [EU SME definition]
+    domain_web       Non-Web            vs Web
+    domain_breadth   Narrow (≤1)        vs Broad (≥2) domains
+    maturity_strict  Low (none/ad hoc)  vs High (KPIs / SDLC)  ['do not know' excluded]
+    size_1000        SME (1–999)        vs Enterprise (1000+)  [sensitivity only]
+
+  WANT  (1–5)
+    want_env   mean(CO2_reduction, Energy_reduction)
+    want_ops   mean(Cost_reduction, Performance, Compliance)
+    want_all   mean of all five objectives
+
+  CAN
+    can_constraint  [0–2]  barrier severity: 0 structural, 1 addressable, 2 clear
+                           (primary for H2; skipped item = NaN, not a maximum)
+    can_effort      [1–5]  'optimization is worth the required effort' (col 52)
+                           (primary for H5)
+    can_score       [0–10] 10 − n_barriers_checked  (legacy; H2 sensitivity only)
+
+  DO
+    do_breadth           [0–3]  cumulative tier ladder: tier N requires ≥1 metric
+                                from ALL tiers 1..N. 1 proxy/resource,
+                                2 + physical energy, 3 + environmental
+    do_institutionalized [0–3]  decision frequency (0/1/2) + green_req (0/1)
+    do_composite         [0–6]  do_breadth + do_institutionalized
+
+  OUTLOOK
+    outlook_intent    [1–5]  likelihood of adopting structured guidelines
+    outlook_awareness [0–9]  count of decision areas recognised as impacted
+
+  SCORE DESCRIPTIVES
+  ──────────────────────────────────────────────────────────────────────────
+  Score                                     n    Mdn   Mean     SD   Min   Max
+  ──────────────────────────────────────────────────────────────────────────
+  Maturity (ordinal 0–3, excl. DK)         70   1.00   0.97   0.99   0.0   3.0
+  Want (environmental obj.)                82   3.75   3.29   1.37   1.0   5.0
+  Want (operational obj.)                  85   4.00   3.92   0.93   1.0   5.0
+  Want (all objectives)                    85   3.80   3.68   0.84   1.0   5.0
+  Can (constraint 0–2)    *primary H2      86   0.00   0.42   0.68   0.0   2.0
+  Can (effort-worthwhile) *primary H5      88   4.00   3.52   1.13   1.0   5.0
+  Can (barrier-inverted)   sensitivity     88   8.00   7.57   1.72   4.0  10.0
+  Do (metric tier breadth)                 88   1.00   1.19   0.96   0.0   3.0
+  Do (institutionalization)                88   1.00   0.91   0.99   0.0   3.0
+  Do (composite 0–6)                       88   2.00   2.10   1.63   0.0   6.0
+  Outlook (intent 1–5)                     88   2.00   2.61   1.19   1.0   5.0
+  Outlook (awareness 0–9)                  88   4.00   3.89   2.21   0.0   9.0
+
+  CONTEXT GROUP SIZES
+  ──────────────────────────────────────────────────────────────────────
+  size_250            SME (1–249)=32, Enterprise (250+)=56
+  size_1000           SME (1–999)=49, Enterprise (1000+)=39
+  maturity_strict     Low maturity=51, High maturity=19
+  domain_web          Non-Web=45, Web=43
+  domain_breadth      Narrow (≤1)=31, Broad (≥2)=57
+  domain_Mobile       Non-Mobile=70, Mobile=18
+  domain_IoT_Embedded  Non-IoT_Embedded=69, IoT_Embedded=19
+  domain_Web          Non-Web=45, Web=43
+  domain_Platform_Infra  Non-Platform_Infra=39, Platform_Infra=49
+  domain_Business_Enterprise  Non-Business_Enterprise=36, Business_Enterprise=52
+
+─────────────────────────────────────────────────────────────────
+  H1  Context → Want  –  Mann-Whitney U
+  Primary (Holm k=2)  size_250 × want_ops         larger orgs face compliance/cost pressure
+                      maturity_strict × want_env  governance maturity strengthens intent
+  Post-hoc            domain_web × want_env       selected after screening all 5 domains;
+                                                  reported uncorrected (see below)
+  Exploratory         full 3×3 split × want-subscale matrix        (uncorrected)
+  Sensitivity         size_1000, alternative threshold             (uncorrected)
+
+  PRIMARY MODEL  (confirmatory pairs, Holm-Bonferroni k=2)
+  Pair                                           n_A   n_B   Mdn_A  Mdn_B    ΔMdn   p_raw  p_adj  effect
+  ────────────────────────────────────────────────────────────────────────────────────────────────────
+  SME vs Enterprise × Want(ops)                   30    55    4.00   4.33   +0.33   0.223  0.223  small      
+  Low vs High maturity × Want(env)                49    19    3.00   4.00   +1.00   0.002  0.004  moderate   *
+
+  POST-HOC SPLIT  (uncorrected; selection-aware Bonferroni bound over 5 domains)
+  Non-Web vs Web × Want(env)  [post-hoc split]    41    41    3.00   4.00   +1.00  p_raw=0.0047  selection-bound=0.024  moderate
+
+  EXPLORATORY MATRIX  (all 3 splits × 3 want subscales, uncorrected)
+  Holm correction applies only to the confirmatory pairs above; the Web split is post-hoc.
+
+  SME (1–249) vs Enterprise (250+)
+    n: SME (1–249)=32, Enterprise (250+)=56
+  Sub-scale      Mdn_A   Mdn_B    ΔMdn   p_raw  effect
+  ─────────────────────────────────────────────────────────────────
+  Want(env)       3.50    3.75   +0.25   0.926  negligible  
+  Want(ops)       4.00    4.33   +0.33   0.223  small         ← primary
+  Want(all)       3.50    4.00   +0.50   0.124  small       
+
+  Non-Web vs Web domain
+    n: Non-Web=45, Web=43
+  Sub-scale      Mdn_A   Mdn_B    ΔMdn   p_raw  effect
+  ─────────────────────────────────────────────────────────────────
+  Want(env)       3.00    4.00   +1.00   0.005  moderate   *
+  Want(ops)       4.00    4.33   +0.33   0.911  negligible  
+  Want(all)       3.60    4.00   +0.40   0.073  small       
+
+  Low vs High maturity (strict)
+    n: Low maturity=51, High maturity=19
+  Sub-scale      Mdn_A   Mdn_B    ΔMdn   p_raw  effect
+  ─────────────────────────────────────────────────────────────────
+  Want(env)       3.00    4.00   +1.00   0.002  moderate   *  ← primary
+  Want(ops)       4.00    4.33   +0.33   0.512  negligible  
+  Want(all)       3.60    4.20   +0.60   0.007  moderate   *
+
+  SENSITIVITY (not included in Holm correction)
+  SME (1–999) vs Enterprise (1000+)  [alternative threshold]
+    n: SME (1–999)=49, Enterprise (1000+)=39
+  Sub-scale      Mdn_A   Mdn_B    ΔMdn   p_raw  effect
+  ─────────────────────────────────────────────────────────────────
+  Want(env)       3.50    4.00   +0.50   0.913  negligible  
+  Want(ops)       4.00    4.33   +0.33   0.209  small       
+  Want(all)       3.60    4.00   +0.40   0.120  small       
+
+  DOMAIN BREAKDOWN (each domain vs rest – exploratory, uncorrected)
+  All 5 domains tested regardless of group size
+  (⚠ = underpowered, not skipped). Sorted by prevalence, descending.
+  Significance is driven by ΔMdn, not by how many respondents selected a domain.
+  Web is the primary split above; shown here for direct comparison.
+
+  Non-Business_Enterprise vs Business_Enterprise
+    n: Non-Business_Enterprise=36, Business_Enterprise=52
+  Sub-scale      Mdn_A   Mdn_B    ΔMdn   p_raw  effect
+  ─────────────────────────────────────────────────────────────────
+  Want(env)       4.00    3.50   -0.50   0.553  negligible  
+  Want(ops)       4.00    4.00   +0.00   0.761  negligible  
+  Want(all)       3.80    4.00   +0.20   0.864  negligible  
+
+  Non-Platform_Infra vs Platform_Infra
+    n: Non-Platform_Infra=39, Platform_Infra=49
+  Sub-scale      Mdn_A   Mdn_B    ΔMdn   p_raw  effect
+  ─────────────────────────────────────────────────────────────────
+  Want(env)       3.50    3.75   +0.25   0.340  small       
+  Want(ops)       4.00    4.17   +0.17   0.257  small       
+  Want(all)       3.40    3.90   +0.50   0.147  small       
+
+  Non-Web vs Web  ← primary
+    n: Non-Web=45, Web=43
+  Sub-scale      Mdn_A   Mdn_B    ΔMdn   p_raw  effect
+  ─────────────────────────────────────────────────────────────────
+  Want(env)       3.00    4.00   +1.00   0.005  moderate   *
+  Want(ops)       4.00    4.33   +0.33   0.911  negligible  
+  Want(all)       3.60    4.00   +0.40   0.073  small       
+
+  Non-IoT_Embedded vs IoT_Embedded
+    n: Non-IoT_Embedded=69, IoT_Embedded=19
+  Sub-scale      Mdn_A   Mdn_B    ΔMdn   p_raw  effect
+  ─────────────────────────────────────────────────────────────────
+  Want(env)       3.50    4.00   +0.50   0.300  small       
+  Want(ops)       4.00    4.33   +0.33   0.790  negligible  
+  Want(all)       3.80    4.00   +0.20   0.682  negligible  
+
+  Non-Mobile vs Mobile
+    n: Non-Mobile=70, Mobile=18
+  Sub-scale      Mdn_A   Mdn_B    ΔMdn   p_raw  effect
+  ─────────────────────────────────────────────────────────────────
+  Want(env)       3.50    4.00   +0.50   0.178  small       
+  Want(ops)       4.00    4.33   +0.33   0.203  small       
+  Want(all)       3.60    4.30   +0.70   0.027  small      *
+
+  WANT_ENV SUMMARY (prevalence order)
+  n counts use want_env effective sample (n=82; 6 missing excluded per group).
+  Domain                   n(dom) n(rest)    ΔMdn   p_raw  effect
+  ────────────────────────────────────────────────────────────────────────
+  Business_Enterprise         49       33   -0.50   0.553  negligible  
+  Platform_Infra              46       36   +0.25   0.340  small       
+  Web                         41       41   +1.00   0.005  moderate   * ← primary
+  IoT_Embedded                18       64   +0.50   0.300  small       
+  Mobile                      17       65   +0.50   0.178  small       
+
+  MATURITY ORDINAL – Spearman ρ  (richer use of 4-level scale)
+  Ordinal 0–3 (None→Ad hoc→KPIs→SDLC-integrated), n=70  (excl. 'I do not know').
+  Complement to binary split: uses full ordinal gradient, more statistical power.
+  Pair                                           n       ρ         p  direction
+  ────────────────────────────────────────────────────────────────────────
+  maturity_ord × Want(env)                      68   +0.440   0.000 ***  pos +
+  maturity_ord × Want(ops)                      70   +0.135   0.265 n.s. pos +
+  maturity_ord × Want(all)                      70   +0.367   0.002 **   pos +
+
+  → H1 VERDICT:  SUPPORTED ✓  (1/2 confirmatory pairs survive Holm)
+
+─────────────────────────────────────────────────────────────────
+  H2  Context → Can  –  Mann-Whitney U
+  Primary score:    can_constraint (0 structural / 1 addressable / 2 clear)
+                                   higher = fewer and less severe constraints
+  Complementary:    can_effort     ('effort worthwhile' Likert 1–5)
+  Sensitivity:      can_score      (legacy 10 − barrier count, superseded)
+
+  Prediction: broad domain footprint → heterogeneous stacks → severer barriers.
+              Size and maturity are secondary moderators.
+
+  PRIMARY: can_constraint  (Holm-Bonferroni across the 3 splits)
+  Split                                           Mdn_A  Mdn_B    ΔMdn   p_raw  p_adj  effect
+  ────────────────────────────────────────────────────────────────────────────────────────────
+  Narrow (≤1) vs Broad (≥2) domain footprint       0.00   0.00   +0.00   0.599  1.000  negligible 
+    n: Narrow (≤1)=29, Broad (≥2)=57
+  SME (1–249) vs Enterprise (250+)                 0.00   0.00   +0.00   0.826  1.000  negligible 
+    n: SME (1–249)=31, Enterprise (250+)=55
+  Low vs High maturity (strict)                    0.00   0.00   +0.00   0.347  1.000  negligible 
+    n: Low maturity=51, High maturity=19
+
+  COMPLEMENTARY: can_effort × same splits (Likert, uncorrected)
+  Split                                           Mdn_A  Mdn_B    ΔMdn   p_raw  effect
+  ────────────────────────────────────────────────────────────────────────────────────────────
+  Narrow (≤1) vs Broad (≥2) domain footprint       3.00   4.00   +1.00   0.458  negligible 
+  SME (1–249) vs Enterprise (250+)                 3.00   4.00   +1.00   0.078  small      
+  Low vs High maturity (strict)                    4.00   4.00   +0.00   0.848  negligible 
+
+  SENSITIVITY: can_score  (legacy 10 − barrier count, same 3 splits, uncorrected)
+  Split                                           Mdn_A  Mdn_B    ΔMdn   p_raw  effect
+  ────────────────────────────────────────────────────────────────────────────────────────────
+  Narrow (≤1) vs Broad (≥2) domain footprint       8.00   7.00   -1.00   0.115  small      
+  SME (1–249) vs Enterprise (250+)                 8.00   7.00   -1.00   0.157  small      
+  Low vs High maturity (strict)                    8.00   8.00   +0.00   0.076  small      
+
+  DOMAIN BREAKDOWN: can_constraint by individual domain (exploratory, uncorrected)
+  All 5 domains tested regardless of group size (⚠ = underpowered, not skipped).
+  Sorted by prevalence, descending. domain_breadth is the primary split above.
+
+  Split                                           Mdn_A  Mdn_B    ΔMdn   p_raw  effect
+  ────────────────────────────────────────────────────────────────────────────────────────────
+  Non-Business_Enterprise vs Business_Enterprise   0.00   0.00   +0.00   0.931  negligible 
+    n: Non-Business_Enterprise=35, Business_Enterprise=51
+  Non-Platform_Infra vs Platform_Infra             0.00   0.00   +0.00   0.818  negligible 
+    n: Non-Platform_Infra=37, Platform_Infra=49
+  Non-Web vs Web                                   0.00   0.00   +0.00   0.680  negligible 
+    n: Non-Web=43, Web=43
+  Non-IoT_Embedded vs IoT_Embedded                 0.00   0.00   +0.00   0.516  negligible 
+    n: Non-IoT_Embedded=68, IoT_Embedded=18
+  Non-Mobile vs Mobile                             0.00   0.00   +0.00   0.635  negligible 
+    n: Non-Mobile=68, Mobile=18
+
+  MATURITY ORDINAL – Spearman ρ  (richer use of 4-level scale)
+  Ordinal 0–3 (None→Ad hoc→KPIs→SDLC-integrated), n=70  (excl. 'I do not know').
+  Complement to binary maturity split; reported as descriptive comparison.
+  Pair                                           n       ρ         p  direction
+  ────────────────────────────────────────────────────────────────────────
+  maturity_ord × Can(constraint)                70   +0.050   0.682 n.s. pos +
+  maturity_ord × Can(effort)                    70   +0.089   0.461 n.s. pos +
+
+  DOMAIN BREADTH ORDINAL – Spearman ρ  (robustness over full 0–5 gradient)
+  Ordinal domain count 0–5 (number of domains per respondent), n=88.
+  Complement to binary Narrow/Broad split; primary remains the binary split.
+  Pair                                           n       ρ         p  direction
+  ────────────────────────────────────────────────────────────────────────
+  domain_count × Can(constraint)                86   -0.063   0.567 n.s. neg −
+  domain_count × Can(effort)                    88   +0.122   0.257 n.s. pos +
+
+  → H2 VERDICT:  NOT SUPPORTED
+
+─────────────────────────────────────────────────────────────────
+  H3  Context → Do  –  Mann-Whitney U
+  Dependent score:  do_composite (0–6)
+
+  Prediction: context shapes enacted practice directly. Coercive pressure
+              (size / CSRD threshold) primary; maturity and breadth secondary.
+
+  PRIMARY: do_composite  (Holm-Bonferroni across the 3 splits)
+  Split                                           Mdn_A  Mdn_B    ΔMdn   p_raw  p_adj  effect
+  ────────────────────────────────────────────────────────────────────────────────────────────
+  SME (1–249) vs Enterprise (250+)                 1.50   2.00   +0.50   0.388  0.388  negligible 
+    n: SME (1–249)=32, Enterprise (250+)=56
+  Low vs High maturity (strict)                    1.00   4.00   +3.00   0.008  0.025  moderate   *
+    n: Low maturity=51, High maturity=19
+  Narrow (≤1) vs Broad (≥2) domain footprint       1.00   2.00   +1.00   0.023  0.047  small      *
+    n: Narrow (≤1)=31, Broad (≥2)=57
+
+  → H3 VERDICT:  SUPPORTED ✓  (2/3 primary tests survive Holm)
+
+─────────────────────────────────────────────────────────────────
+  H4  Want → Do  –  Spearman ρ
+
+  Prediction: stronger sustainability objectives → more extensive or more
+              embedded practice (positive ρ).
+  Primary pair (for verdict):  want_env × do_institutionalized
+             environmental motivation most directly predicts formalised
+             practice (decisions + green requirements embedded in process).
+
+  Pair                                       n       ρ         p  direction   verdict
+  ──────────────────────────────────────────────────────────────────────────────────
+  Want(env) × Do(breadth)                   82   +0.073   0.512 n.s. pos +    directional n.s.
+  Want(env) × Do(inst)                      82   +0.293   0.008 **   pos +    SUPPORTED ✓  ← primary
+  Want(env) × Do(comp)                      82   +0.224   0.043 *    pos +    SUPPORTED ✓
+  Want(ops) × Do(breadth)                   85   +0.164   0.133 n.s. pos +    directional n.s.
+  Want(ops) × Do(inst)                      85   +0.022   0.845 n.s. pos +    directional n.s.
+  Want(ops) × Do(comp)                      85   +0.125   0.256 n.s. pos +    directional n.s.
+  Want(all) × Do(breadth)                   85   +0.143   0.193 n.s. pos +    directional n.s.
+  Want(all) × Do(inst)                      85   +0.195   0.074 n.s. pos +    directional n.s.
+  Want(all) × Do(comp)                      85   +0.210   0.054 n.s. pos +    directional n.s.
+
+  → H4 VERDICT:  SUPPORTED ✓  primary ρ=+0.293 (p=0.008); 2/9 pairs significant, 9/9 in predicted direction
+
+─────────────────────────────────────────────────────────────────
+  H5  Can → Do  –  Spearman ρ
+
+  Prediction: higher perceived capability → more extensive or embedded
+              practice (positive ρ). Primary score can_effort asks directly
+              about worthwhileness; the barrier-count sensitivity below is
+              confounded by engagement (note follows that block).
+
+  PRIMARY: can_effort × Do  ('effort worthwhile' Likert)
+  Pair                                       n       ρ         p  direction   verdict
+  ──────────────────────────────────────────────────────────────────────────────────
+  can_effort × do_composite                 88   +0.417  p<0.001 ***  pos +    SUPPORTED ✓  ← primary
+  can_effort × do_breadth                   88   +0.295  p=0.005 **   pos +    SUPPORTED ✓
+  can_effort × do_inst                      88   +0.367  p<0.001 ***  pos +    SUPPORTED ✓
+
+  SENSITIVITY: can_score × do_composite  (inverted barrier count)
+  can_score × do_composite                 n=88   -0.040  p=0.708
+
+  ─ Construct-validity note on the sensitivity result ─────────────
+  Barrier count is confounded by engagement: respondents who never
+  attempted to measure cannot report barriers. In this sample, the
+  14 respondent(s) endorsing 'no barriers' show higher do_breadth (mdn=0)
+  than the 74 reporting barriers (mdn=1) – the opposite of the
+  theoretical prediction. The primary can_effort measure avoids
+  this confound by asking directly about perceived worthwhileness.
+
+  → H5 VERDICT:  SUPPORTED ✓  primary ρ=+0.417 (p<0.001)
+
+─────────────────────────────────────────────────────────────────
+  H8  Do → Outlook  –  Spearman ρ
+
+  Prediction: more extensive and embedded practice → more proactive outlook
+              (positive ρ). × intent: drives adoption plans? × awareness:
+              broadens recognition of future impact?
+
+  Pair                                       n       ρ         p  direction   verdict
+  ──────────────────────────────────────────────────────────────────────────────────
+  Do(comp) × Outlook(intent)                88   +0.401   0.000 ***  pos +    SUPPORTED ✓
+  Do(comp) × Outlook(awareness)             88   +0.329   0.002 **   pos +    SUPPORTED ✓
+
+  → H8 VERDICT:  SUPPORTED ✓  (2/2 significant, predicted direction)
+
+─────────────────────────────────────────────────────────────────
+  ROBUSTNESS – non-cumulative Do breadth (highest tier reached)
+  Practice associations re-tested with breadth = highest tier present
+  (not requiring all lower tiers), confirming the cumulative tier ladder
+  is not an artefact.
+
+  Association                       rho cum  rho n-c    p n-c  verdict
+  ────────────────────────────────────────────────────────────────────────
+  H4  want_env x Do(comp)            +0.224   +0.337    0.002  holds
+  H5  can_effort x Do(comp)          +0.417   +0.394    0.000  holds
+  H8  Do(comp) x outlook_intent      +0.401   +0.498    0.000  holds
+  H8  Do(comp) x outlook_aware       +0.329   +0.170    0.113  CHANGES ⚠
+
+  -> Non-cumulative breadth: SOME associations change — review before reporting.
+
+─────────────────────────────────────────────────────────────────
+  ROLE DESCRIPTIVES  (exploratory, descriptive only)
+  Respondents may hold multiple roles; groups are not mutually exclusive.
+
+  Role                       n         Can(effort)         Do(breadth)            Do(comp)
+                                  Mdn   Mean    SD    Mdn   Mean    SD    Mdn   Mean    SD
+  ──────────────────────────────────────────────────────────────────────────────────────────
+  Management                46   3.5   3.43   1.17   1.0   1.22   1.03   1.0   2.07   1.76
+  Technical                 52   4.0   3.63   1.12   1.0   1.38   0.89   2.0   2.31   1.60
+  Non-Technical             18   4.0   3.72   1.18   1.0   0.83   0.92   1.5   1.67   1.33
+
+  Technical vs Management – Mann-Whitney (descriptive, uncorrected)
+  Score                   Mdn_Tech Mdn_Mgmt    ΔMdn        p  effect
+  ──────────────────────────────────────────────────────────────────────
+  Can(effort)                 4.00     3.50   -0.50  p=0.368  negligible  
+  Do(breadth)                 1.00     1.00   +0.00  p=0.235  small  
+  Do(comp)                    2.00     1.00   -1.00  p=0.331  negligible  
+    n: Technical=52, Management=46
+
+=================================================================
+  HYPOTHESIS SUMMARY  (primary model)
+=================================================================
+
+  H1   Context → Want       SUPPORTED ✓  (1/2 confirmatory pairs survive Holm)
+       Best:  maturity_strict×want_env  ΔMdn=+1.00  p=0.002  p_adj=0.004  moderate
+
+  H2   Context → Can        NOT SUPPORTED
+       Best:  domain_breadth×can_constraint  ΔMdn=+0.00  p=0.599  p_adj=1.000  negligible
+
+  H3   Context → Do         SUPPORTED ✓  (2/3 primary tests survive Holm)
+       Best:  maturity_strict×do_composite  ΔMdn=+3.00  p=0.008  p_adj=0.025  moderate
+
+  H4   Want → Do            SUPPORTED ✓  primary ρ=+0.293 (p=0.008); 2/9 pairs significant, 9/9 in predicted direction
+       Primary pair: want_env × do_institutionalized  ρ=+0.293  p=0.008
+
+  H5   Can → Do             SUPPORTED ✓  primary ρ=+0.417 (p<0.001)
+       Primary:     can_effort × do_composite  ρ=+0.417  p<0.001
+       Sensitivity: can_score  × do_composite  ρ=-0.040  p=0.708  (engagement-confound caveat)
+
+  H6   Want → Outlook       direct effect, verdict from PLS-SEM (run pls_bootstrap.py)
+  H7   Can  → Outlook       direct effect, verdict from PLS-SEM (run pls_bootstrap.py)
+
+  H8   Do → Outlook         SUPPORTED ✓  (2/2 significant, predicted direction)
+       do_composite × outlook_intent         ρ=+0.401  p<0.001  ***
+       do_composite × outlook_awareness      ρ=+0.329  p=0.002  **
+
+─────────────────────────────────────────────────────────────────
+  METHODOLOGY NOTES
+  ──────────────────────────────────────────────────────────────────────
+  Holm-Bonferroni   H1 k=2 theory-driven pairs | H2 k=3 splits (can_constraint)
+                    | H3 k=3 splits (do_composite). Exploratory matrices uncorrected.
+  Primary pairs     H4 want_env × do_institutionalized | H5 can_effort × do_composite
+  Not tested here   H6/H7 (Want/Can → Outlook) — joint PLS-SEM verdict
+  Exploratory only  role descriptives (groups non-exclusive, no hypothesis)
+  Power             Spearman at n=88 detects |ρ|≥0.40 at ≈80%; Mann-Whitney with
+                    two groups of ~44 detects r≥0.40. Groups under n=10 flagged ⚠
+                    as underpowered — p reported, no verdict carried.
+
