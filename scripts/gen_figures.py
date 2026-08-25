@@ -112,8 +112,8 @@ LBL_AREA = {
     "Libraries": "Libraries", "Source_code": "Source code", "Procurement": "Procurement",
     "Requirements": "Requirements",
 }
-LBL_TIER = {0: "No metric tracked", 1: "Resource proxies only",
-            2: "+ physical energy", 3: "+ environmental"}
+LBL_TIER = {0: "No metric tracked (Tier 0)", 1: "Resource proxies only (Tier 1)",
+            2: "+ physical energy (Tier 2)", 3: "+ environmental (Tier 3)"}
 
 METRIC_BAND = {**{k: "proxy" for k in DO_TIER_PROXY},
                **{k: "physical" for k in DO_TIER_PHYSICAL},
