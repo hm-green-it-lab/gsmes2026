@@ -34,8 +34,8 @@ read the comment there before relaxing it.
 |---|---|
 | `results-survey668719.csv` | LimeSurvey export, completed responses. The input to every analysis. |
 | `results-survey668719-all.csv` | The same export including incomplete responses. Read only by `experiments/dropout_analysis.py`. |
-| `Questionnaire.xlsx` | The questionnaire as administered. Document properties metadata has been anonymized. |
-| `limesurvey_survey_668719.lss` | LimeSurvey definition of the instrument. Author metadata has been anonymized to remove personal identifiers. |
+| `Questionnaire.xlsx` | The questionnaire as administered. |
+| `limesurvey_survey_668719.lss` | LimeSurvey definition of the instrument. |
 | `limesurvey_survey_668719.mmd`, `SurveyFlowchart.md` | Questionnaire flowchart. Both generated from the `.lss`. |
 
 ## Outputs (`reports/`)
@@ -92,8 +92,9 @@ config.py
    └─► hypothesis_test.py ──► gen_overview.py
           │  scoring functions reused by everything below
           ├─► descriptive_analysis.py
-          └─► pls_bootstrap.py ──┬─► pls_sem.py
-                                 └─► pls_alternatives.py
+          ├─► pls_bootstrap.py ──► pls_sem.py
+          ├─► pls_alternatives.py
+          └─► validate_rho_diff.py
 
        gen_latex.py       gen_figures.py
 
@@ -199,10 +200,13 @@ nothing else — editing a sentence never rewrites a generated file.
 ## Experiments
 
 `experiments/` holds three analyses that were run during the study and left out
-of the paper: the response funnel and dropout comparison, an exploratory factor
-analysis of the Want items, and the outer measurement model. Nothing in
-`scripts/` imports them and no reported value depends on them; they are kept
-because each one settled a decision. See `experiments/README.md`.
+of the paper — the response funnel and dropout comparison, an exploratory
+factor analysis of the Want items, and the outer measurement model — plus the
+macro and report layer that turns the PLS-SEM and robustness checks into
+`reports/robustness_report.txt` (`extra_macros.py`, `gen_robustness_report.py`).
+Nothing in `scripts/` imports them and no macro in the paper depends on them;
+they are kept because each analysis settled a decision and the report bounds
+how far the paper's conclusions carry. See `experiments/README.md`.
 
 ## Tooling disclaimer
 
